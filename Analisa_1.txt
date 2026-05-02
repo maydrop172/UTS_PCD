@@ -1,0 +1,11 @@
+ANALISA TRANSFORMASI TITIK: NEGATIF DAN LOGARITMIK
+
+1. Perbedaan Persebaran Nilai Keabuan (Histogram):
+   - Histogram Citra Asli: Bentuk persebaran nilai keabuan sangat bergantung pada pencahayaan foto asli. Jika citra dominan gelap, piksel akan menumpuk di sisi kiri (mendekati nilai 0).
+   - Histogram Citra Negatif: Merupakan kebalikan (pencerminan terbalik) dari citra asli terhadap nilai tengah skala keabuan (127.5). Jika pada histogram asli terdapat puncak di intensitas rendah (misal 50), maka pada citra negatif puncak tersebut akan bergeser ke intensitas tinggi (255 - 50 = 205).
+   - Histogram Citra Logaritmik: Histogram akan menunjukkan pergeseran (peregangan) yang signifikan dari nilai-nilai piksel gelap ke arah yang lebih terang (tengah dan kanan). Piksel yang bernilai rendah rentangnya akan diperlebar, sedangkan piksel yang bernilai tinggi rentangnya akan dimampatkan.
+
+2. Kapan Transformasi Logaritmik Lebih Bermanfaat Dibanding Negatif?
+   Transformasi logaritmik lebih bermanfaat dibandingkan transformasi negatif ketika kita ingin menganalisa atau memperbaiki citra yang mengalami "underexposed" (terlalu gelap) atau memiliki rentang dinamis (dynamic range) yang sempit di area intensitas rendah. 
+   
+   Fungsi logaritmik sangat baik dalam "mengangkat" dan memperjelas detail yang tersembunyi di area gelap tanpa membuat area yang sudah terang menjadi benar-benar putih (overexposed). Sebaliknya, transformasi negatif hanya membalikkan nilai intensitas (hitam menjadi putih, putih menjadi hitam). Transformasi negatif lebih bermanfaat hanya untuk tujuan spesifik seperti melihat foto rontgen (sinar-X) di mana detail putih lebih mudah dianalisis oleh mata manusia di atas latar belakang hitam, namun tidak cocok untuk sekadar mencerahkan foto gelap.
