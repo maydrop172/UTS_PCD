@@ -1,0 +1,17 @@
+ANALISA FILTER SPASIAL DAN KONVOLUSI
+
+1. Perbandingan Visual Hasil LPF, HPF, dan BPF:
+   - Low Pass Filter (LPF): Citra terlihat lebih buram (blur) atau halus. Tepi-tepi objek yang tadinya tajam menjadi lebih lembut. Hal ini efektif untuk mengurangi noise (derau) pada citra.
+   - High Pass Filter (HPF): Citra menjadi sangat gelap (mayoritas piksel bernilai hitam atau mendekati nol). Namun, garis-garis tepi (edge) atau batas objek terlihat menonjol dan lebih terang. Filter ini hanya mempertahankan garis perubahan intensitas yang ekstrem.
+   - Band Pass Filter (BPF) / Sharpen: Citra terlihat mirip dengan citra aslinya, namun batas atau tepi-tepi objek di dalamnya menjadi lebih tajam dan tegas. Filter ini meningkatkan kontras lokal di area tepian (edge enhancement).
+
+2. Perbandingan Nilai Rata-Rata Piksel (Mean Intensity):
+   - Nilai rata-rata piksel LPF dan BPF akan memiliki nilai yang berdekatan atau hampir sama dengan citra Original. Hal ini dikarenakan jumlah koefisien di dalam kernel LPF adalah 1 (9/9) dan kernel Sharpen juga bernilai 1 (5 - 4). Hal ini berarti intensitas pencahayaan keseluruhan (DC component) tidak diubah.
+   - Sebaliknya, nilai rata-rata piksel pada hasil HPF akan sangat rendah (mendekati 0). Ini karena jumlah keseluruhan koefisien pada kernel HPF adalah 0 (8 - 8). Kernel yang jumlahnya nol akan mematikan area piksel yang seragam (konstan) menjadi hitam (0).
+
+3. Penjelasan Hubungan Domain Spasial dan Domain Frekuensi:
+   - Dalam konteks citra, "Frekuensi Rendah" mewakili area piksel yang intensitasnya seragam atau perubahannya lambat (seperti warna langit atau tekstur tembok yang mulus). "Frekuensi Tinggi" mewakili area dengan perubahan intensitas piksel yang tiba-tiba, seperti tepi objek (edge) atau noise.
+   - Hubungannya dengan kernel spasial yang digunakan:
+     a. LPF (Low Pass Filter): Kernel ini bertindak meloloskan frekuensi rendah (area seragam) dan menekan (mengurangi efek) frekuensi tinggi. Itulah sebabnya tepi yang tajam menjadi blur.
+     b. HPF (High Pass Filter): Berkebalikan dengan LPF, kernel ini menekan frekuensi rendah (mematikan area datar menjadi hitam) dan meloloskan frekuensi tinggi (hanya menampilkan batas tepi).
+     c. BPF / Sharpen: Filter ini bertindak di antara keduanya dengan meloloskan pita frekuensi tertentu. Pada metode Sharpen, filter ini merupakan gabungan dari meloloskan semua frekuensi (Identitas) ditambah frekuensi tinggi (HPF), sehingga kita tetap melihat citra aslinya tetapi dengan frekuensi tinggi (tepi) yang diperkuat.
